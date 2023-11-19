@@ -1,0 +1,402 @@
+# SSAFY D107 포팅 메뉴얼
+
+# 개발 및 배포 환경
+
+## 프론트엔드
+
+- VS CODE 1.80.0
+- React Router Dom 6.14.1
+- React 18.2.0
+- react-native 0.72.5
+- Node.js 18.17.1
+- eas 0.1.0
+- expo 0.18.4
+
+## 백엔드
+
+- Java 17
+- IntelliJ 2023.1.4
+- Spring Boot 3.0.2
+- MySQL 8.0.33
+- redis 7.0.12
+
+# 배포 및 빌드 (환경파일)
+
+## Podo-User-Service
+
+spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+
+# database
+spring.datasource.username=[계정 이름]
+spring.datasource.password=[비밀번호]
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=[DB URL]
+serverTimeone=Asia/Seoul&characterEncoding=UTF-8
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+
+
+# server
+server.port=9020
+
+http.reqeust.firebase.url=http://[도메인]:9000
+http.request.auth.url=http://[도메인]:9010
+http.request.account.url=http://[도메인]:9030
+
+## Podo-Auth-Service
+spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+
+# database
+spring.datasource.username=[계정 이름]
+spring.datasource.password=[비밀번호]
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=[DB URL]serverTimeone=Asia/Seoul&characterEncoding=UTF-8
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+
+# jwt
+spring.jwt.secret=[secret]
+spring.jwt.token.validity.second.access=3600
+spring.jwt.token.validity.second.refresh=86400
+
+# redis
+spring.data.redis.host=[도메인]
+spring.data.redis.port=6379
+spring.data.redis.password=[비밀번호]
+
+# mail
+spring.mail.host=smtp.gmail.com
+spring.mail.port=465
+spring.mail.username=whosthezara@gmail.com
+spring.mail.password=nijcbnjwrwfjymbu
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.ssl.enable=true
+spring.mail.properties.mail.debug=false
+
+# server
+server.port=9010
+
+http.request.firebase.url=http://[도메인]:9000
+
+
+##Podo-Account-Service
+
+spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+
+# database
+spring.datasource.username=[계정 이름]
+spring.datasource.password=[비밀번호]
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=[DB URL]
+serverTimeone=Asia/Seoul&characterEncoding=UTF-8
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+
+
+# server
+server.port=9030
+
+http.request.auth.url=http://[도메인]:9010
+http.request.user.url=http://[도메인]:9020
+http.request.firebase.url=http://[도메인]:9000
+
+## Podo-Gateway
+jwt.secret-key=[secret]
+
+## Podo-OpenBanking
+spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+
+# database
+spring.datasource.username=[계정 이름]
+spring.datasource.password=[비밀번호]
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=[DB URL]
+serverTimeone=Asia/Seoul&characterEncoding=UTF-8
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+spring.datasource.hikari.maximum-pool-size=3
+
+# redis
+spring.data.redis.host=[도메인]
+spring.data.redis.port=6379
+spring.data.redis.password=[비밀번호]
+
+# server
+server.port=9040
+
+http.request.user.url=http://[도메인]:9020
+http.request.auth.url=http://[도메인]:9010
+http.request.account.url=http://[도메인]:9030
+
+## Podo-Firebase-Service
+spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+
+# database
+spring.datasource.username=[계정 이름]
+spring.datasource.password=[비밀번호]
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=[DB URL]
+serverTimeone=Asia/Seoul&characterEncoding=UTF-8
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# server
+server.port=9000
+
+# firebase
+firebase.type = service_account
+firebase.project_id = [프로젝트 아이디]
+firebase.private_key_id = [private key_id]
+firebase.private_key = [private key]
+firebase.client_email = [client email]
+firebase.client_id = [client_id]
+firebase.auth_uri = https://accounts.google.com/o/oauth2/auth
+firebase.token_uri = https://oauth2.googleapis.com/token
+firebase.auth_provider_x509_cert_url = https://www.googleapis.com/oauth2/v1/certs
+firebase.client_x509_cert_url = https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-53lfw%40podo-firebase.iam.gserviceaccount.com
+firebase.universe_domain = googleapis.com
+
+## Dotori-Auth-Service
+# MySQL ??
+spring.datasource.username=[계정 이름]
+spring.datasource.password=[비밀번호]
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=[DB URL]
+serverTimeone=Asia/Seoul&characterEncoding=UTF-8
+
+spring.jpa.show-sql=true
+
+# DDL(create, alter, drop)
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.format_sql=true
+spring.datasource.hikari.maximum-pool-size=3
+
+# SMTP
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=[username]
+spring.mail.password=[비밀번호]
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# REDIS
+spring.data.redis.host=[도메인]
+spring.data.redis.port=6379
+spring.data.redis.password=[비밀번호]
+
+# KAKAO LOGIN
+kakao.client.id=[kakao.client.id]
+kakao.client.secret=[kakao.client.secret]
+kakao.redirect.url=http://[도메인]:9110/api/v1/kakao/callback
+
+# NAVER LOGIN
+naver.client.id=[naver.client.id]
+naver.client.secret=[naver.client.secret]
+naver.redirect.url=http://[도메인]:9110/api/v1/naver/callback
+
+# JWT SECRET KEY
+jwt.secret.key=[secret_key]
+
+# server URL
+dotori.auth.url= http://[도메인]:9110/api/v1
+dotori.user.url= http://[도메인]:9120/api/v1
+dotori.purpose.url= http://[도메인]:9130/api/v1
+dotori.main.url= http://[도메인]:9140/api/v1
+
+
+## Dotori-Main-Service
+# MySQL
+spring.datasource.username=[계정 이름]
+spring.datasource.password=[비밀번호]
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=[DB URL]
+serverTimeone=Asia/Seoul&characterEncoding=UTF-8
+
+spring.jpa.show-sql=true
+
+# DDL(create, alter, drop)
+spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.properties.hibernate.format_sql=true
+
+# SMTP
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=[username]
+spring.mail.password=[비밀번호]
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# REDIS
+spring.data.redis.host=[도메인]
+spring.data.redis.port=6379
+spring.data.redis.password=[비밀번호]
+
+spring.datasource.hikari.maximum-pool-size=3
+
+# JWT SECRET KEY
+jwt.secret.key=[secret]
+
+# server URL
+dotori.auth.url= http://[도메인]:9110/api/v1
+dotori.user.url= http://[도메인]:9120/api/v1
+dotori.purpose.url= http://[도메인]:9130/api/v1
+dotori.main.url= http://[도메인]:9140/api/v1
+
+# chatGPT
+chatGPT.api-key = [chatGPT_KEY]
+
+# randombox
+randombox.weight.one = 300
+randombox.weight.two = 500
+randombox.weight.three = 1000
+
+
+
+
+
+## Dotori-Purpose-Service
+# MySQL
+spring.datasource.username=[계정 이름]
+spring.datasource.password=[비밀번호]
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=[DB URL]
+serverTimeone=Asia/Seoul&characterEncoding=UTF-8
+spring.datasource.hikari.maximum-pool-size=3
+
+spring.jpa.show-sql=true
+
+# DDL(create, alter, drop)
+spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.properties.hibernate.format_sql=true
+
+# SMTP
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=[username]
+spring.mail.password=[password]
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# REDIS
+spring.data.redis.host=[도메인]
+spring.data.redis.port=6379
+spring.data.redis.password=[password]
+
+
+# JWT SECRET KEY
+jwt.secret.key=[secret]
+
+dotori.auth.url= http://[도메인]:9110/api/v1
+dotori.user.url= http://[도메인]:9120/api/v1
+dotori.purpose.url= http://[도메인]:9130/api/v1
+dotori.main.url= http://[도메인]:9140/api/v1
+
+
+
+## Dotori-User-Service
+spring.datasource.username=[계정 이름]
+spring.datasource.password=[비밀번호]
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=[DB URL]
+serverTimeone=Asia/Seoul&characterEncoding=UTF-8
+
+spring.jpa.show-sql=true
+
+# DDL(create, alter, drop)
+# spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.properties.hibernate.format_sql=true
+
+# SMTP
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=[username]
+spring.mail.password=[password]
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# REDIS
+spring.data.redis.host=[도메인]
+spring.data.redis.port=6379
+spring.data.redis.password=[비밀번호]
+
+spring.datasource.hikari.maximum-pool-size=3
+
+# KAKAO LOGIN
+kakao.client.id=[kakao.client.id]
+kakao.client.secret=[kakao.client.secret]
+kakao.redirect.url=http://[도메인]:9110/api/v1/kakao/callback
+
+# NAVER LOGIN
+naver.client.id=[naver.client.id]
+naver.client.secret=[naver.client.secret]
+naver.redirect.url=http://[도메인]:9110/api/v1/naver/callback
+
+# JWT SECRET KEY
+jwt.secret.key=[secret]
+
+
+# server URL
+dotori.auth.url= http://[도메인]:9110/api/v1
+dotori.user.url= http://[도메인]:9120/api/v1
+dotori.purpose.url= http://[도메인]:9130/api/v1
+dotori.main.url= http://[도메인]:9140/api/v1
+
+
+### openVidu port
+
+- 22 TCP: to connect using SSH to admin OpenVidu.
+- 80 TCP: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
+- 443 TCP: OpenVidu server and application are published by default in standard https port.
+- 3478 TCP+UDP: used by TURN server to resolve clients IPs.
+- 40000 - 57000 TCP+UDP: used by Kurento Media Server to establish media connections.
+- 57001 - 65535 TCP+UDP: used by TURN server to establish relayed media connections.
+
+### 그 외 사용 port
+- Jenkins
+- 포도은행Redis 9050
+- Podo-Eureka-Server 9761
+- podo-gateway 9600
+- Podo-Firebase-Service 9000
+- Podo-Auth-Service 9010
+- Podo-User-Service 9020
+- Podo-Account-Service 9030
+- Podo-OpenBank-Service 9040
+
+
+ 
+- Dotori Eureka Server 8761
+- Dotori Api Gateway Server 9200
+- 도토리Redis 9150
+- Dotori-Auth-Service 9110
+- Dotori-User-Service 9120
+- Dotori-Purpose-Service 9130
+- Dotori-Main-Service 9140
+- Spring Cloud Config Server 9900
+
+### 배포 특이사항
+git pull https://github.com/podobank/podo-gateway.git
+https://github.com/podobank/yongyongGateway.git
+https://github.com/podobank/podo-eureka.git
+https://github.com/podobank/yongyongEureka.git
+
+cloud config git 만들어서 
+dotori-auth.properties
+dotori-gateway.properties
+dotori-main.properties
+dotori-purpose.properties
+dotori-user.properties
+podo-account.properties
+podo-auth.properties
+podo-firebase.properties
+podo-gateway.properties
+podo-openbanking.properties
+podo-user.properties
+생성
+
+spring cloud config server 프로젝트 생성

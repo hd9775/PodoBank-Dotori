@@ -1,0 +1,22 @@
+server:
+  port: 9140
+# http://j9d107.p.ssafy.io:9900/
+spring:
+  config:
+    import: "optional:configserver:http://j9d107.p.ssafy.io:9900/"
+#  cloud:
+#    config:
+#      name: dotori
+#      profile: main
+  application:
+    name: dotori-main-service
+
+#encrypt:
+#  key: ${ENCRYPT_KEY}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost

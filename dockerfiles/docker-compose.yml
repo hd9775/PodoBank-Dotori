@@ -1,0 +1,53 @@
+version: "3"
+services:
+  podobank:
+    image: bangjinseong/podobank:${BUILD_NUMBER}
+    build:
+      context: ../Podo_Bank/backend
+      dockerfile: ../Podo_Bank/backend/openbanking/Dockerfile.Podo_back
+      args:
+        - BUILD_NUMBER
+    ports:
+      - "9000:9000"
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - ENCRYPT_KEY=${ENCRYPT_KEY_VALUE}
+      - TZ=Asia/Seoul
+# 안되면 답없음
+#    external_links:
+#      - podo_redis:redis
+    depends_on:
+      - redis
+  redis:
+    image: redis
+    ports:
+      - "9050:6379"
+    volumes:
+      - /etc/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+
+
+  dotori:
+    image: bangjinseong/dotori:${BUILD_NUMBER}
+    build:
+      context: ../Dotori/backend/Dotori
+      dockerfile: Dockerfile.Dotori_back
+      args:
+        - BUILD_NUMBER
+    ports:
+      - "9100:9100"
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - ENCRYPT_KEY=${ENCRYPT_KEY_VALUE}
+      - TZ=Asia/Seoul
+    external_links:
+      - dotori_redis:redis
+#    depends_on:
+#      - redis_dotori
+#  redis_dotori:
+#    image: redis
+#    ports:
+#      - "9150:6379"
+#    volumes:
+#      - /etc/redis/redis.conf:/usr/local/etc/redis/redis.conf
+#    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]

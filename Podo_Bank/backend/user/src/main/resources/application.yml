@@ -1,0 +1,20 @@
+spring:
+  config:
+    import: "optional:configserver:http://j9d107.p.ssafy.io:9900/"
+  cloud:
+    config:
+      name: podo
+      profile: user
+  application:
+    name: podo-user-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://j9d107.p.ssafy.io:9761/eureka/
+  instance:
+    hostname: j9d107.p.ssafy.io
+
+
+encrypt:
+  key: ${ENCRYPT_KEY}

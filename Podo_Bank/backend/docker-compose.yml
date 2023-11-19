@@ -1,0 +1,41 @@
+version: "3"
+services:
+  podo-user-service:
+    image: bangjinseong/podo-user-service:${BUILD_NUMBER}
+    build:
+      context: ./user
+      dockerfile: Dockerfile
+      args:
+        - BUILD_NUMBER
+    ports:
+      - "9020:9020"
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - ENCRYPT_KEY=${ENCRYPT_KEY_VALUE}
+      - TZ=Asia/Seoul
+    depends_on:
+      - redis
+  podo-auth-service:
+    image: bangjinseong/podo-auth-service:${BUILD_NUMBER}
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+      args:
+        - BUILD_NUMBER
+    ports:
+      - "9010:9010"
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - ENCRYPT_KEY=${ENCRYPT_KEY_VALUE}
+      - TZ=Asia/Seoul
+    external_links:
+      - podo_redis:redis
+#    depends_on:
+#      - redis
+#  redis:
+#    image: redis
+#    ports:
+#      - "9050:6379"
+#    volumes:
+#      - /etc/redis/redis.conf:/usr/local/etc/redis/redis.conf
+#    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
