@@ -10,9 +10,9 @@
 <hr>
 
 ### 📌 포도은행과 도토리의 URL
-- [도토리 보러가기](https://github.com/hd9775/PodoBank-Dotori/tree/master/Dotori)🐿
+- [도토리 보러가기](https://github.com/hd9775/PodoBank-Dotori-public/tree/master/Dotori)🐿
 
-- [포도은행 보러가기](https://github.com/hd9775/PodoBank-Dotori/tree/master/Podo_Bank) 🍇
+- [포도은행 보러가기](https://github.com/hd9775/PodoBank-Dotori-public/tree/master/Podo_Bank) 🍇
 
 <hr>
 
